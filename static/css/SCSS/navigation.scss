@@ -1,0 +1,220 @@
+
+$primaryColor: hsl(220, 100%, 40%);
+$primaryColorLight: hsl(220, 100%, 55%);
+
+
+#main-nav {
+  padding:15px;
+}
+
+#main-nav-toggle-btn {
+  display: inline-block;
+  padding:10px 15px;
+  background-color: $primaryColor;
+  color:#fff;
+  text-decoration: none;
+  border-radius: .5em;
+  text-shadow: none;
+  font-size: 1.1em;
+  
+
+  &:hover, &:active, &:focus, &[aria-expanded="true"] {
+    background-color:$primaryColorLight
+  }
+
+  // State animations for hamburger button
+  &[aria-expanded="true"] > .nav-hamburger {
+    transform: rotateZ(-90deg);
+    bottom:-.1em;
+  }
+
+  /*
+  &[aria-expanded="true"] > .nav-hamburger > .nav-hamburger__line:first-of-type {
+    height:20px;
+    background-color: transparent;
+    border:2px solid #fff;
+  }
+
+  &[aria-expanded="true"] > .nav-hamburger > .nav-hamburger__line:nth-child(2),
+  &[aria-expanded="true"] > .nav-hamburger > .nav-hamburger__line:nth-child(3) {
+    opacity: 0;
+    margin:0;
+    height:0;
+  }
+  */
+  &[aria-expanded="true"] > .nav-hamburger > .nav-hamburger__line:first-of-type {
+    height:6px;
+    
+  }
+
+  &[aria-expanded="true"] > .nav-hamburger > .nav-hamburger__line:nth-child(2) {
+    background-color: transparent;
+    border:2px solid #fff;
+    height: 14px;
+    margin:0;
+  }
+
+  &[aria-expanded="true"] > .nav-hamburger > .nav-hamburger__line:nth-child(3) {
+    opacity: 0;
+    margin:0;
+    height:0;
+  }
+  
+}
+
+
+.nav-hamburger {
+  display: inline-block;
+  width:1.15em;
+  margin-right: .1em;
+  margin-left: .1em;
+  transition: all .2s;
+  position: relative;
+}
+
+.nav-hamburger__line:first-of-type {
+  margin-top:0;
+}    
+
+.nav-hamburger__line {
+      display: block;
+      background-color:#fff;
+      margin-top:.25em;
+      height: 2px;
+    }
+
+#main-nav-panel-container {
+  position: fixed;
+  left:0;
+  top:0;
+  bottom: 0;
+  right:0;
+  margin:auto;
+  z-index:9000;
+}
+
+#main-nav-panel {
+  position: absolute;
+  left:0;  top:0;  bottom: 0;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 400px;
+  max-width:max-content;
+  background-color:rgba(255, 255, 255, .9);
+  margin:0;
+  padding:2em;
+  padding-top:55px;
+  box-shadow: 0 8px 8px -4px rgba(0,0,0.25);
+  transition: all 350ms ease-in-out;
+  z-index: 1;
+
+  & ul {
+    list-style: none;
+    margin:0;
+    padding:0 0 0 15px;
+    //border-top:1px solid #ccc;
+  }
+
+  & > ul {
+    padding-left:0;
+  }
+
+  & ul > li {
+    margin:0;
+
+    //border-top:1px solid #ccc;
+  }
+
+  & ul > li:first-of-type {
+    border-top:0;
+  }
+
+  & a {
+    color:$primaryColor;
+    text-decoration: none;
+    display: block;
+    padding-top:5px; padding-bottom:5px;
+    transition: all .3s;
+    padding-left:10px;
+    padding-right:10px;
+    
+    border-left:1px solid #ccc;
+
+    &:hover, &:focus, &:active, &.active {
+      background-color: $primaryColorLight;
+      border-radius: 3px;
+      padding-left:20px;
+      color:#fff;
+    }
+  }
+}
+
+#main-nav-panel.closed {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+#main-nav-panel.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+  #main-nav-close {
+    position: absolute;
+    right:10px;
+    top:10px;
+    padding:17px;
+    transition: all 150ms;
+    border:1px solid transparent;
+    border-radius: 7px;
+    text-align: middle;
+
+    &:before,
+    &:after {
+      position: absolute;
+      top:0; left:0; bottom:0; right:0;
+      margin: auto;
+      content:'';
+      display: block;
+      width:2px;
+      height:25px;
+      background-color:#555;
+      transition: all 150ms;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform:rotate(-45deg);
+    }
+
+    &:hover, &:active, &:focus {
+      background-color:$primaryColor;
+      border-color: #ccc;
+    }
+
+    &:hover:before, &:active:before, &:focus:before,
+    &:hover:after, &:active:after, &:focus:after {
+      background-color: #fff;
+    }
+  }
+
+#main-nav-bg {
+  background-color:rgba(0, 0, 0, .5);
+  position: absolute;
+  top:0; right:0; bottom:0; left:0;
+  margin: auto;
+  transition: all 150ms ease-in-out;
+}
+
+#main-nav-panel.closed + #main-nav-bg {
+  opacity:0;
+} 
+
+#main-nav-panel.open + #main-nav-bg {
+  opacity: 1;
+}
+
+
